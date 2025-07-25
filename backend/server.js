@@ -19,17 +19,30 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use(cors({
-    origin: [
-        "http://localhost:5173", 
-        "http://localhost:3000", 
-        "https://chrisdev-blog.netlify.app",
-        "https://chrisdev-blog.onrender.com",
-        "https://mern-blog-ha28.onrender.com",
-        "https://chris-dev-backend.onrender.com",
-        "https://frontend-8wt7wj8fh-chris-projects-7330068d.vercel.app",
-        /https:\/\/frontend-.*-chris-projects-7330068d\.vercel\.app$/
-    ],
-    credentials:true
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        
+        const allowedOrigins = [
+            "http://localhost:5173", 
+            "http://localhost:3000", 
+            "https://chrisdev-blog.netlify.app",
+            "https://chrisdev-blog.onrender.com",
+            "https://mern-blog-ha28.onrender.com",
+            "https://chris-dev-backend.onrender.com",
+            "https://frontend-8wt7wj8fh-chris-projects-7330068d.vercel.app"
+        ];
+        
+        // Check if origin is in allowed list or matches Vercel pattern
+        if (allowedOrigins.includes(origin) || 
+            origin.match(/https:\/\/frontend-.*-chris-projects-7330068d\.vercel\.app$/)) {
+            return callback(null, true);
+        }
+        
+        console.log('CORS blocked origin:', origin);
+        return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true
 }))
 
 const _dirname = path.resolve()
