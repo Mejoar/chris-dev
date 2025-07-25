@@ -12,7 +12,7 @@ services:
       - key: PORT
         value: 10000
       - key: MONGO_URI
-        value: mongodb+srv://root:Njeri%40012%21%21@cluster-1.99stna3.mongodb.net/chrisdev-blog?retryWrites=true&w=majority
+        value: mongodb+srv://root:Njeri%2540012%2521%2521@cluster-1.99stna3.mongodb.net/chrisdev-blog
       - key: JWT_SECRET
         value: 05b0d9769ccd7a3c6281644658ff18d0c6ec2ee96f248ab6b2f784662f423f57881972617dea42798b0dba97a370b6c9cc304babc25abd4a49251233aaa1cf77
       - key: CLOUDINARY_CLOUD_NAME
