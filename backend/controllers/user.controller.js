@@ -7,8 +7,15 @@ import cloudinary from "../utils/cloudinary.js";
 
 export const register = async (req, res) => {
     try {
+        console.log("🚀 REGISTER ENDPOINT CALLED");
+        console.log("📥 Request body:", req.body);
+        console.log("📋 Request headers:", req.headers);
+        
         const { firstName, lastName, email,  password } = req.body;
+        console.log("🔍 Extracted fields:", { firstName, lastName, email, password: password ? "[PROVIDED]" : "[MISSING]" });
+        
         if (!firstName || !lastName || !email ||  !password) {
+            console.log("❌ Missing required fields");
             return res.status(400).json({
                 success: false,
                 message: "All fields are required"
@@ -57,10 +64,16 @@ export const register = async (req, res) => {
         })
 
     } catch (error) {
-        console.log(error);
+        console.log("🚨 REGISTER ERROR DETAILS:");
+        console.log("Error name:", error.name);
+        console.log("Error message:", error.message);
+        console.log("Error stack:", error.stack);
+        console.log("Full error object:", error);
+        
         return res.status(500).json({
             success: false,
-            message: "Failed to register"
+            message: "Failed to register",
+            ...(process.env.NODE_ENV !== 'production' && { debug: error.message })
         })
 
     }

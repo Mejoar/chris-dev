@@ -84,6 +84,10 @@ app.get("*", (req, res) => {
 });
 
 app.listen(PORT, ()=>{
-    console.log(`Server listen at port ${PORT}`);
+    console.log(`🚀 Server listen at port ${PORT}`);
+    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🔑 JWT Secret exists: ${!!process.env.JWT_SECRET}`);
+    console.log(`🗄️ MongoDB URI exists: ${!!process.env.MONGO_URI}`);
+    console.log(`☁️ Cloudinary configured: ${!!process.env.CLOUDINARY_CLOUD_NAME}`);
     connectDB()
 })
