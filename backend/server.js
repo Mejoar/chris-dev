@@ -25,7 +25,8 @@ app.use(cors({
         "https://chrisdev-blog.netlify.app",
         "https://chrisdev-blog.onrender.com",
         "https://mern-blog-ha28.onrender.com",
-        "https://chris-dev-backend.onrender.com"
+        "https://chris-dev-backend.onrender.com",
+        "https://frontend-8wt7wj8fh-chris-projects-7330068d.vercel.app"
     ],
     credentials:true
 }))
