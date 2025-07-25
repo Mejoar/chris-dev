@@ -1,7 +1,7 @@
 import { Blog } from "../models/blog.model.js";
 import Comment from "../models/comment.model.js";
-import cloudinary from "../utils/cloudinary.js";
-import getDataUri from "../utils/dataUri.js";
+// import cloudinary from "../utils/cloudinary.js";
+// import getDataUri from "../utils/dataUri.js";
 
 // Create a new blog post
 export const createBlog = async (req,res) => {
@@ -44,13 +44,13 @@ export const updateBlog = async (req, res) => {
                 message:"Blog not found!"
             })
         }
-        let thumbnail;
-        if (file) {
-            const fileUri = getDataUri(file)
-            thumbnail = await cloudinary.uploader.upload(fileUri)
-        }
+        // let thumbnail;
+        // if (file) {
+        //     const fileUri = getDataUri(file)
+        //     thumbnail = await cloudinary.uploader.upload(fileUri)
+        // }
 
-        const updateData = {title, subtitle, description, category,author: req.id, thumbnail: thumbnail?.secure_url};
+        const updateData = {title, subtitle, description, category,author: req.id}; // removed thumbnail temporarily
         blog = await Blog.findByIdAndUpdate(blogId, updateData, {new:true});
 
         res.status(200).json({ success: true, message: "Blog updated successfully", blog });
