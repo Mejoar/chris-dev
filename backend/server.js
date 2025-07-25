@@ -54,8 +54,10 @@ const _dirname = path.resolve()
 // Health check endpoint
 app.get("/", (req, res) => {
     res.json({ 
-        message: "Chris Dev Blog API is running!", 
+        message: "Chris Dev Blog API v2.0 - FIXED VERSION is running!", 
         status: "success",
+        version: "2.0-fixed",
+        deployment: new Date().toISOString(),
         timestamp: new Date().toISOString()
     });
 });
@@ -80,10 +82,12 @@ app.use('*', (req, res) => {
 // Frontend is deployed separately on Netlify/Vercel
 
 app.listen(PORT, ()=>{
-    console.log(`🚀 Server listen at port ${PORT}`);
+    console.log(`🚀 CHRIS DEV BLOG API v2.0 - Server listening on port ${PORT}`);
     console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
     console.log(`🔑 JWT Secret exists: ${!!process.env.JWT_SECRET}`);
     console.log(`🗄️ MongoDB URI exists: ${!!process.env.MONGO_URI}`);
     console.log(`☁️ Cloudinary configured: ${!!process.env.CLOUDINARY_CLOUD_NAME}`);
+    console.log(`⚡ DEPLOYMENT TIMESTAMP: ${new Date().toISOString()}`);
+    console.log(`📡 All routes loaded and ready!`);
     connectDB()
 })
