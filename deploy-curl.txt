@@ -1,0 +1,22 @@
+# Render Deployment using curl
+# Replace YOUR_API_KEY with your actual API key from: https://dashboard.render.com/account/api-keys
+
+curl -X POST "https://api.render.com/v1/services" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "type": "web_service",
+    "name": "chris-dev-backend",
+    "repo": "https://github.com/Mejoar/chris-dev.git",
+    "branch": "main",
+    "buildCommand": "npm install",
+    "startCommand": "npm start",
+    "plan": "free",
+    "env": "node",
+    "envVars": [
+      {"key": "NODE_ENV", "value": "production"},
+      {"key": "PORT", "value": "10000"},
+      {"key": "MONGO_URI", "value": "mongodb+srv://chrisdev:Chris@12!!@cluster2.swvvac3.mongodb.net/chrisdev-blog"},
+      {"key": "JWT_SECRET", "value": "05b0d9769ccd7a3c6281644658ff18d0c6ec2ee96f248ab6b2f784662f423f57881972617dea42798b0dba97a370b6c9cc304babc25abd4a49251233aaa1cf77"}
+    ]
+  }'
