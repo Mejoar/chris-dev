@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { Button } from './ui/button'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { Input } from './ui/input'
-import Logo from "../assets/logo.png"
+import Logo from "../assets/chris-dev-logo.svg"
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'sonner'
 import axios from 'axios'
 import { setUser } from '@/redux/authSlice'
-import userLogo from "../assets/user.jpg"
+import userLogo from "../assets/chris-profile.jpg"
 import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
 import {
     ChartColumnBig,
@@ -56,7 +56,7 @@ const Navbar = () => {
     const logoutHandler = async (e) => {
 
         try {
-            const res = await axios.get(`https://mern-blog-ha28.onrender.com/api/v1/user/logout`, { withCredentials: true });
+            const res = await axios.get(`http://localhost:8000/api/v1/user/logout`, { withCredentials: true });
             if (res.data.success) {
                 navigate("/")
                 dispatch(setUser(null))
@@ -87,8 +87,8 @@ const Navbar = () => {
                 <div className='flex gap-7 items-center'>
                     <Link to={'/'}>
                         <div className='flex gap-2 items-center'>
-                            <img src={Logo} alt="" className='w-7 h-7 md:w-10 md:h-10 dark:invert' />
-                            <h1 className='font-bold text-3xl md:text-4xl'>Logo</h1>
+                            <img src={Logo} alt="Chris Dev Logo" className='w-7 h-7 md:w-10 md:h-10' />
+                            <h1 className='font-bold text-3xl md:text-4xl'>Chris Dev</h1>
                         </div>
                     </Link>
                     <div className='relative hidden md:block'>

@@ -1,5 +1,5 @@
 import React from 'react'
-import heroImg from "../assets/blog2.png"
+import heroImg from "../assets/programmer-illustration.svg"
 import { Button } from './ui/button'
 import { Link } from 'react-router-dom'
 
@@ -9,9 +9,9 @@ const Hero = () => {
       <div className='max-w-7xl mx-auto flex flex-col md:flex-row items-center h-[600px] my-10 md:my-0'>
         {/* text section */}
         <div className="max-w-2xl">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 ">Explore the Latest Tech & Web Trends</h1>
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 ">Welcome to Chris Dev</h1>
         <p className="text-lg md:text-xl opacity-80 mb-6 ">
-          Stay ahead with in-depth articles, tutorials, and insights on web development, digital marketing, and tech innovations.
+          Dive deep into web development, programming tutorials, tech reviews, and insights from a passionate developer's journey.
         </p>
         <div className="flex space-x-4">
           <Link to={"/dashboard/write-blog"}><Button className="text-lg ">Get Started</Button></Link>
@@ -20,7 +20,7 @@ const Hero = () => {
       </div>
         {/* image section */}
         <div className=' flex items-center justify-center '>
-            <img src={heroImg} alt="" className='md:h-[550px] md:w-[550px]'/>
+            <img src={heroImg} alt="Programming and Development" className='md:h-[550px] md:w-[550px] rounded-2xl shadow-lg'/>
         </div>
       </div>
     </div>

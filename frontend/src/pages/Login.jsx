@@ -32,16 +32,16 @@ const Login = () => {
     console.log(input);
 
     try {
-      const response = await axios.post(`https://mern-blog-ha28.onrender.com/api/v1/user/login`, input, {
+            const res = await axios.post(`http://localhost:8000/api/v1/user/login`, input, {
         headers: {
           "Content-Type": "application/json"
         },
         withCredentials: true
       });
-      if (response.data.success) {
+      if (res.data.success) {
         navigate('/')
-        dispatch(setUser(response.data.user))
-        toast.success(response.data.message)
+        dispatch(setUser(res.data.user))
+        toast.success(res.data.message)
       }
     } catch (error) {
       console.log(error.response.data.message);

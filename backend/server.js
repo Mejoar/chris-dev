@@ -19,7 +19,13 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use(cors({
-    origin: "https://mern-blog-ha28.onrender.com",
+    origin: [
+        "http://localhost:5173", 
+        "http://localhost:3000", 
+        "https://chrisdev-blog.netlify.app",
+        "https://chrisdev-blog.onrender.com",
+        "https://mern-blog-ha28.onrender.com"
+    ],
     credentials:true
 }))
 

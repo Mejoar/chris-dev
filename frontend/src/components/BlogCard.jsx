@@ -8,13 +8,13 @@ const BlogCard = ({blog}) => {
     const formattedDate = date.toLocaleDateString("en-GB");
     return (
         <div className="bg-white dark:bg-gray-800 dark:border-gray-600 p-5 rounded-2xl shadow-lg border hover:scale-105 transition-all">
-            <img src={blog.thumbnail} alt="" className='rounded-lg'/>
+            {blog.thumbnail && <img src={blog.thumbnail} alt={blog.title} className='rounded-lg mb-3'/>}
             <p className="text-sm  mt-2">
-                By {blog.author.firstName} | {blog.category} | {formattedDate}
+                By {blog.author?.firstName || 'Anonymous'} | {blog.category || 'Uncategorized'} | {formattedDate}
             </p>
-            <h2 className="text-xl font-semibold  mt-1">{blog.title}</h2>
-            <h3 className='text-gray-500 mt-1'>{blog.subtitle}</h3>
-            {/* <p className=" mt-3">{blog.description.substring(0, 100)}...</p> */}
+            <h2 className="text-xl font-semibold  mt-1">{blog.title || 'Untitled Blog'}</h2>
+            {blog.subtitle && <h3 className='text-gray-500 mt-1'>{blog.subtitle}</h3>}
+            {blog.description && <p className=" mt-3 text-gray-600 dark:text-gray-300">{blog.description.replace(/<[^>]*>/g, '').substring(0, 100)}...</p>}
             {/* <div className="mt-3 flex flex-wrap gap-2">
                 {blog.tags.map((tag, index) => (
                     <span key={index} className="text-xs bg-gray-100 px-2 py-1 rounded-md">

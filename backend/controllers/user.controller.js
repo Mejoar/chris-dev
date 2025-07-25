@@ -69,7 +69,7 @@ export const register = async (req, res) => {
 export const login = async(req, res) => {
     try {
         const {email,  password } = req.body;
-        if (!email && !password) {
+        if (!email || !password) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required"
@@ -92,7 +92,7 @@ export const login = async(req, res) => {
             })
         }
         
-        const token = await jwt.sign({userId:user._id}, process.env.SECRET_KEY, { expiresIn: '1d' })
+        const token = await jwt.sign({userId:user._id}, process.env.JWT_SECRET, { expiresIn: '1d' })
         return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpsOnly: true, sameSite: "strict" }).json({
             success:true,
             message:`Welcome back ${user.firstName}`,

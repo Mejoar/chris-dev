@@ -7,9 +7,9 @@ const Newsletter = () => {
     <div>
         <section className="bg-[#262629] dark:bg-gray-800 p-8 rounded-lg">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4 text-white">Subscribe to the Newsletter</h2>
+          <h2 className="text-2xl font-bold mb-4 text-white">Stay Updated with Chris Dev</h2>
           <p className="text-gray-300 mb-6">
-            Get the latest posts and updates delivered straight to your inbox.
+            Get the latest programming tutorials, tech insights, and development tips delivered to your inbox.
           </p>
           <div className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
             <Input

@@ -36,7 +36,7 @@ const BlogView = () => {
     const likeOrDislikeHandler = async () => {
         try {
             const action = liked ? 'dislike' : 'like';
-            const res = await axios.get(`https://mern-blog-ha28.onrender.com/api/v1/blog/${selectedBlog?._id}/${action}`, { withCredentials: true })
+            const res = await axios.get(`http://localhost:8000/api/v1/blog/${selectedBlog?._id}/${action}`, { withCredentials: true })
             if (res.data.success) {
                 const updatedLikes = liked ? blogLike - 1 : blogLike + 1;
                 setBlogLike(updatedLikes);
@@ -103,23 +103,21 @@ const BlogView = () => {
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
-                            <Link to={'/'}><BreadcrumbLink >Home</BreadcrumbLink></Link>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator />
-
-
-                        <BreadcrumbItem>
-                            <Link to={'/blogs'}><BreadcrumbLink >Blogs</BreadcrumbLink></Link>
+                            <BreadcrumbLink href="/">Home</BreadcrumbLink>
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
-                            <BreadcrumbPage>{selectedBlog.title}</BreadcrumbPage>
+                            <BreadcrumbLink href="/blogs">Blogs</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbPage>{selectedBlog?.title || 'Blog Post'}</BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
                 {/* Blog Header */}
                 <div className="my-8">
-                    <h1 className="text-4xl font-bold tracking-tight mb-4">{selectedBlog.title}</h1>
+                    <h1 className="text-4xl font-bold tracking-tight mb-4">{selectedBlog?.title || 'Untitled Blog Post'}</h1>
                     <div className="flex items-center justify-between flex-wrap gap-4">
                         <div className="flex items-center space-x-4">
                             <Avatar>
@@ -127,27 +125,35 @@ const BlogView = () => {
                                 <AvatarFallback>JD</AvatarFallback>
                             </Avatar>
                             <div>
-                                <p className="font-medium">{selectedBlog.author.firstName} {selectedBlog.author.lastName}</p>
-                                <p className="text-sm text-muted-foreground">{selectedBlog.author.occupation}</p>
+                                <p className="font-medium">{selectedBlog?.author?.firstName || 'Anonymous'} {selectedBlog?.author?.lastName || ''}</p>
+                                <p className="text-sm text-muted-foreground">{selectedBlog?.author?.occupation || 'Writer'}</p>
                             </div>
                         </div>
-                        <div className="text-sm text-muted-foreground">Published on {changeTimeFormat(selectedBlog.createdAt)} • 8 min read</div>
+                        <div className="text-sm text-muted-foreground">Published on {selectedBlog?.createdAt ? changeTimeFormat(selectedBlog.createdAt) : 'Unknown'} • 8 min read</div>
                     </div>
                 </div>
 
                 {/* Featured Image */}
-                <div className="mb-8 rounded-lg overflow-hidden">
-                    <img
-                        src={selectedBlog?.thumbnail}
-                        alt="Next.js Development"
-                        width={1000}
-                        height={500}
-                        className="w-full object-cover"
-                    />
-                    <p className="text-sm text-muted-foreground mt-2 italic">{selectedBlog.subtitle}</p>
-                </div>
+                {selectedBlog?.thumbnail && (
+                    <div className="mb-8 rounded-lg overflow-hidden">
+                        <img
+                            src={selectedBlog.thumbnail}
+                            alt={selectedBlog.title || 'Blog Image'}
+                            width={1000}
+                            height={500}
+                            className="w-full object-cover"
+                        />
+                        {selectedBlog.subtitle && <p className="text-sm text-muted-foreground mt-2 italic">{selectedBlog.subtitle}</p>}
+                    </div>
+                )}
 
-                <p className='' dangerouslySetInnerHTML={{ __html: selectedBlog.description }} />
+                <div className='prose max-w-none dark:prose-invert'>
+                    {selectedBlog?.description ? (
+                        <div dangerouslySetInnerHTML={{ __html: selectedBlog.description }} />
+                    ) : (
+                        <p className='text-gray-600 dark:text-gray-300 text-lg'>This blog post content is being updated. Please check back later for the full article.</p>
+                    )}
+                </div>
 
                 <div className='mt-10'>
                     {/* Tags */}
@@ -212,3 +218,4 @@ const BlogView = () => {
 }
 
 export default BlogView
+

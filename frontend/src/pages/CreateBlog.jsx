@@ -25,7 +25,8 @@ const CreateBlog = () => {
         
         try {
             setLoading(true)
-            const res = await axios.post(`https://mern-blog-ha28.onrender.com/api/v1/blog/`, { title, category }, {
+            const formData = { title, category };
+            const res = await axios.post(`http://localhost:8000/api/v1/blog/`, formData, {
                 headers: {
                     "Content-Type": "application/json",
                 },

@@ -32,17 +32,17 @@ const Signup = () => {
         console.log(user)
 
         try {
-            const response = await axios.post(`https://mern-blog-ha28.onrender.com/api/v1/user/register`, user, {
+            const res = await axios.post(`http://localhost:8000/api/v1/user/register`, user, {
                 headers: {
                     "Content-Type": "application/json",
                 },
                 withCredentials: true,
             });
-            if (response.data.success) {
+            if (res.data.success) {
                 navigate('/login')
-                toast.success(response.data.message)
+                toast.success(res.data.message)
             } else {
-                toast.error(response.data.message)
+                toast.error(res.data.message)
             }
         } catch (error) {
             console.log(error);

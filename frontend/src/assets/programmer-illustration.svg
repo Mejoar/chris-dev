@@ -1,0 +1,90 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#backgroundGradient)"/>
+  
+  <!-- Desk -->
+  <rect x="50" y="300" width="500" height="20" fill="#8B4513" rx="5"/>
+  
+  <!-- Monitor -->
+  <rect x="200" y="150" width="250" height="150" fill="#2C3E50" rx="10"/>
+  <rect x="210" y="160" width="230" height="130" fill="#1A1A1A"/>
+  
+  <!-- Monitor Screen with Code -->
+  <rect x="215" y="165" width="220" height="120" fill="#0F172A"/>
+  
+  <!-- Code Lines -->
+  <rect x="225" y="175" width="60" fill="#3B82F6" height="3"/>
+  <rect x="225" y="185" width="40" fill="#10B981" height="3"/>
+  <rect x="270" y="185" width="80" fill="#F59E0B" height="3"/>
+  <rect x="225" y="195" width="30" fill="#EF4444" height="3"/>
+  <rect x="260" y="195" width="90" fill="#8B5CF6" height="3"/>
+  <rect x="225" y="205" width="50" fill="#06B6D4" height="3"/>
+  <rect x="280" y="205" width="60" fill="#84CC16" height="3"/>
+  <rect x="225" y="215" width="70" fill="#F97316" height="3"/>
+  <rect x="300" y="215" width="35" fill="#EC4899" height="3"/>
+  <rect x="225" y="225" width="45" fill="#6366F1" height="3"/>
+  <rect x="275" y="225" width="75" fill="#14B8A6" height="3"/>
+  <rect x="225" y="235" width="55" fill="#F59E0B" height="3"/>
+  <rect x="285" y="235" width="50" fill="#EF4444" height="3"/>
+  <rect x="225" y="245" width="40" fill="#10B981" height="3"/>
+  <rect x="270" y="245" width="65" fill="#3B82F6" height="3"/>
+  <rect x="225" y="255" width="80" fill="#8B5CF6" height="3"/>
+  <rect x="310" y="255" width="25" fill="#84CC16" height="3"/>
+  
+  <!-- Monitor Stand -->
+  <rect x="300" y="300" width="50" height="30" fill="#7F8C8D"/>
+  <rect x="280" y="325" width="90" height="15" fill="#95A5A6" rx="7"/>
+  
+  <!-- Laptop -->
+  <rect x="400" y="280" width="120" height="20" fill="#34495E" rx="5"/>
+  <rect x="405" y="270" width="110" height="15" fill="#2C3E50" rx="3"/>
+  <rect x="410" y="272" width="100" height="11" fill="#1A1A1A"/>
+  
+  <!-- Coffee Cup -->
+  <circle cx="150" cy="280" r="25" fill="#D4EDDA"/>
+  <circle cx="150" cy="280" r="20" fill="#8B4513"/>
+  <rect x="140" y="275" width="20" height="15" fill="#6F4E37"/>
+  <rect x="175" y="285" width="15" height="8" fill="#D4EDDA" rx="4"/>
+  
+  <!-- Books Stack -->
+  <rect x="80" y="290" width="50" height="8" fill="#E74C3C"/>
+  <rect x="85" y="282" width="45" height="8" fill="#3498DB"/>
+  <rect x="90" y="274" width="40" height="8" fill="#2ECC71"/>
+  
+  <!-- Plant -->
+  <rect x="480" y="280" width="10" height="20" fill="#8B4513"/>
+  <circle cx="485" cy="270" r="12" fill="#27AE60"/>
+  <ellipse cx="485" cy="265" rx="8" ry="15" fill="#2ECC71"/>
+  <ellipse cx="490" cy="275" rx="6" ry="10" fill="#2ECC71"/>
+  <ellipse cx="480" cy="275" rx="6" ry="10" fill="#2ECC71"/>
+  
+  <!-- Person (Simplified) -->
+  <circle cx="300" cy="120" r="30" fill="#FDBCB4"/>
+  <rect x="280" y="140" width="40" height="60" fill="#3498DB" rx="10"/>
+  <rect x="270" y="150" width="20" height="40" fill="#FDBCB4" rx="10"/>
+  <rect x="330" y="150" width="20" height="40" fill="#FDBCB4" rx="10"/>
+  
+  <!-- Hair -->
+  <path d="M275 100 Q300 85 325 100 Q330 110 320 120 Q300 125 280 120 Q270 110 275 100 Z" fill="#8B4513"/>
+  
+  <!-- Floating Code Elements -->
+  <rect x="100" y="80" width="30" height="3" fill="#3B82F6" opacity="0.7"/>
+  <rect x="450" y="60" width="40" height="3" fill="#10B981" opacity="0.7"/>
+  <rect x="120" y="50" width="25" height="3" fill="#F59E0B" opacity="0.7"/>
+  <rect x="480" y="90" width="35" height="3" fill="#EF4444" opacity="0.7"/>
+  <rect x="80" y="120" width="20" height="3" fill="#8B5CF6" opacity="0.7"/>
+  
+  <!-- Tech Icons -->
+  <circle cx="520" cy="40" r="15" fill="#61DAFB" opacity="0.8"/>
+  <text x="520" y="45" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">⚛</text>
+  
+  <rect x="65" y="25" width="30" height="30" fill="#F7DF1E" opacity="0.8" rx="5"/>
+  <text x="80" y="45" text-anchor="middle" fill="black" font-family="Arial, sans-serif" font-size="12" font-weight="bold">JS</text>
+  
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+</svg>
