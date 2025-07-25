@@ -12,6 +12,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import { setBlog } from '@/redux/blogSlice'
+import API_BASE_URL from '../config/api'
 import { Edit, Eye, Trash2 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -73,7 +74,7 @@ const YourBlog = () => {
 
     const getOwnBlog = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/v1/blog/get-own-blogs`, { withCredentials: true })
+            const res = await axios.get(`${API_BASE_URL}/api/v1/blog/get-own-blogs`, { withCredentials: true })
             if (res.data.success) {
                 dispatch(setBlog(res.data.blogs))
             }
@@ -84,7 +85,7 @@ const YourBlog = () => {
     }
     const deleteBlog = async (id) => {
         try {
-            const res = await axios.delete(`http://localhost:8000/api/v1/blog/delete/${id}`, { withCredentials: true })
+            const res = await axios.delete(`${API_BASE_URL}/api/v1/blog/delete/${id}`, { withCredentials: true })
             if (res.data.success) {
                 const updatedBlogData = blog.filter((blogItem) => blogItem?._id !== id);
                 dispatch(setBlog(updatedBlogData))

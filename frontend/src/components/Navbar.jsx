@@ -10,6 +10,7 @@ import axios from 'axios'
 import { setUser } from '@/redux/authSlice'
 import userLogo from "../assets/chris-profile.jpg"
 import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
+import API_BASE_URL from '../config/api';
 import {
     ChartColumnBig,
     Cloud,
@@ -56,7 +57,7 @@ const Navbar = () => {
     const logoutHandler = async (e) => {
 
         try {
-            const res = await axios.get(`http://localhost:8000/api/v1/user/logout`, { withCredentials: true });
+            const res = await axios.get(`${API_BASE_URL}/api/v1/user/logout`, { withCredentials: true });
             if (res.data.success) {
                 navigate("/")
                 dispatch(setUser(null))

@@ -13,7 +13,7 @@ const TotalProperty = () => {
 
     const getOwnBlog = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/v1/blog/get-published-blogs`, { withCredentials: true });
+            const res = await axios.get(`${API_BASE_URL}/api/v1/blog/get-published-blogs`, { withCredentials: true });
             if (res.data.success) {
                 dispatch(setBlog(res.data.blogs))
             }
@@ -24,7 +24,7 @@ const TotalProperty = () => {
     }
     const getTotalComments = async()=>{
         try {
-            const res = await axios.get(`http://localhost:8000/api/v1/user/all-users`, { withCredentials: true });
+            const res = await axios.get(`${API_BASE_URL}/api/v1/user/all-users`, { withCredentials: true });
           if(res.data.success){
              setTotalComments(res.data.totalComments)
           }
@@ -36,7 +36,7 @@ const TotalProperty = () => {
 
     const getTotalLikes = async()=>{
       try {
-            const res = await axios.get(`http://localhost:8000/api/v1/comment/all-comment`, { withCredentials: true });
+            const res = await axios.get(`${API_BASE_URL}/api/v1/comment/all-comment`, { withCredentials: true });
         if(res.data.success){
            setTotalLikes(res.data.totalLikes)
         }
