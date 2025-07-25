@@ -46,10 +46,21 @@ const Signup = () => {
                 toast.error(res.data.message)
             }
         } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message)
-
-
+            console.log('🚨 Registration error:', error);
+            
+            if (error.response) {
+                // Server responded with error status
+                console.log('Server error response:', error.response.data);
+                toast.error(error.response.data.message || 'Registration failed');
+            } else if (error.request) {
+                // Request made but no response (network/CORS issue)
+                console.log('Network error - no response:', error.request);
+                toast.error('Network error - please check your connection or try again later');
+            } else {
+                // Something else happened
+                console.log('Request setup error:', error.message);
+                toast.error('Registration failed - please try again');
+            }
         }
 
         // try {
