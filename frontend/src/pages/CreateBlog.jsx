@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { setBlog } from '@/redux/blogSlice'
 import axios from 'axios'
 import { Loader2 } from 'lucide-react'
+import API_BASE_URL from '../config/api'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -26,7 +27,7 @@ const CreateBlog = () => {
         try {
             setLoading(true)
             const formData = { title, category };
-            const res = await axios.post(`http://localhost:8000/api/v1/blog/`, formData, {
+            const res = await axios.post(`${API_BASE_URL}/api/v1/blog/`, formData, {
                 headers: {
                     "Content-Type": "application/json",
                 },
