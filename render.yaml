@@ -1,21 +1,24 @@
 services:
   - type: web
-    name: chrisdev-blog-backend
+    name: chris-dev-backend
     env: node
     plan: free
     buildCommand: npm install
     startCommand: npm start
+    rootDir: .
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 10000
       - key: MONGO_URI
-        generateValue: true
+        value: mongodb+srv://chrisdev:Chris@12!!@cluster2.swvvac3.mongodb.net/chrisdev-blog
       - key: JWT_SECRET
-        generateValue: true
+        value: 05b0d9769ccd7a3c6281644658ff18d0c6ec2ee96f248ab6b2f784662f423f57881972617dea42798b0dba97a370b6c9cc304babc25abd4a49251233aaa1cf77
       - key: CLOUDINARY_CLOUD_NAME
         sync: false
       - key: CLOUDINARY_API_KEY
         sync: false
       - key: CLOUDINARY_API_SECRET
         sync: false
-    autoDeploy: false
+    autoDeploy: true
