@@ -4,6 +4,7 @@ import LMS from "../assets/LMS.png"
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { setBlog } from '@/redux/blogSlice'
+import API_BASE_URL from '../config/api'
 // import BlogCardList from '@/components/BlogCardList'
 
 export const blogJson = [

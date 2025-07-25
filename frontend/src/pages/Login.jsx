@@ -40,6 +40,24 @@ const Login = () => {
         withCredentials: true
       });
       if (res.data.success) {
+        // Debug response
+        console.log('🔍 Login Response Debug:');
+        console.log('📦 Full response:', res.data);
+        console.log('🎯 Token in response:', res.data.token);
+        console.log('👤 User in response:', res.data.user);
+        
+        // Store token if provided by backend (check multiple possible keys)
+        const token = res.data.token || res.data.accessToken || res.data.authToken || res.data.jwt;
+        
+        if (token) {
+          localStorage.setItem('token', token);
+          console.log('✅ Token stored in localStorage:', token.substring(0, 20) + '...');
+          console.log('✅ Token length:', token.length);
+        } else {
+          console.log('❌ No token in response - backend might be using cookie-based auth');
+          console.log('🔍 Available response keys:', Object.keys(res.data));
+        }
+        
         navigate('/')
         dispatch(setUser(res.data.user))
         toast.success(res.data.message)

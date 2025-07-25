@@ -4,9 +4,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { setBlog } from '@/redux/blogSlice'
-import axios from 'axios'
+import axiosInstance from '../utils/axios'
 import { Loader2 } from 'lucide-react'
-import API_BASE_URL from '../config/api'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -27,12 +26,15 @@ const CreateBlog = () => {
         try {
             setLoading(true)
             const formData = { title, category };
-            const res = await axios.post(`${API_BASE_URL}/api/v1/blog/`, formData, {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                withCredentials: true,
-            })
+            
+            // Debug logging
+            console.log('🔍 CreateBlog Debug:');
+            console.log('📦 localStorage token:', localStorage.getItem('token'));
+            console.log('🍪 document.cookie:', document.cookie);
+            console.log('📝 Form data:', formData);
+            
+            // Use axios interceptor - no need to manually add auth headers
+            const res = await axiosInstance.post('/api/v1/blog/', formData)
             if (res.data.success) {
                 dispatch(setBlog([...blog, res.data.blog]))
                 navigate(`/dashboard/write-blog/${res.data.blog._id}`)
@@ -42,6 +44,14 @@ const CreateBlog = () => {
             }
         } catch (error) {
             console.log(error)
+            if (error.response?.status === 401) {
+                toast.error("Authentication failed. Please login again.");
+                navigate('/login');
+            } else if (error.response?.data?.message) {
+                toast.error(error.response.data.message);
+            } else {
+                toast.error("Failed to create blog. Please try again.");
+            }
         } finally {
             setLoading(false)
         }
