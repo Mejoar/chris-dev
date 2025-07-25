@@ -67,16 +67,21 @@ if (process.env.NODE_ENV !== 'production') {
     app.get("*", (_, res)=>{
         res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"))
     });
-} else {
-    // In production, just return API info for non-API routes
-    app.get("*", (req, res) => {
-        res.json({ 
-            message: "Chris Dev Blog API - Frontend is deployed separately on Netlify",
-            api: "https://chris-dev-backend.onrender.com/api/v1",
-            frontend: "https://chrisdev-blog.netlify.app"
-        });
+} 
+
+// Catch-all for non-API routes (must be after API routes)
+app.get("*", (req, res) => {
+    // Don't intercept API routes
+    if (req.path.startsWith('/api/')) {
+        return res.status(404).json({ message: "API endpoint not found" });
+    }
+    
+    res.json({ 
+        message: "Chris Dev Blog API - Frontend is deployed separately on Netlify",
+        api: "https://chris-dev-backend.onrender.com/api/v1",
+        frontend: "https://chrisdev-blog.netlify.app"
     });
-}
+});
 
 app.listen(PORT, ()=>{
     console.log(`Server listen at port ${PORT}`);

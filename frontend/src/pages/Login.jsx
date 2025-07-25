@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/redux/authSlice";
 import auth from "../assets/auth.jpg"
+import API_BASE_URL from '../config/api'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -32,7 +33,7 @@ const Login = () => {
     console.log(input);
 
     try {
-            const res = await axios.post(`http://localhost:8000/api/v1/user/login`, input, {
+            const res = await axios.post(`${API_BASE_URL}/api/v1/user/login`, input, {
         headers: {
           "Content-Type": "application/json"
         },
