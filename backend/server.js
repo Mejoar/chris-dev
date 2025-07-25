@@ -36,13 +36,17 @@ app.use(cors({
         // Check if origin is in allowed list or matches Vercel pattern
         if (allowedOrigins.includes(origin) || 
             origin.match(/https:\/\/frontend-.*-chris-projects-7330068d\.vercel\.app$/)) {
+            console.log('✅ CORS allowed for origin:', origin);
             return callback(null, true);
         }
         
-        console.log('CORS blocked origin:', origin);
+        console.log('❌ CORS blocked origin:', origin);
         return callback(new Error('Not allowed by CORS'));
     },
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    exposedHeaders: ['Set-Cookie']
 }))
 
 const _dirname = path.resolve()
@@ -69,19 +73,8 @@ if (process.env.NODE_ENV !== 'production') {
     });
 } 
 
-// Catch-all for non-API routes (must be after API routes)
-app.get("*", (req, res) => {
-    // Don't intercept API routes
-    if (req.path.startsWith('/api/')) {
-        return res.status(404).json({ message: "API endpoint not found" });
-    }
-    
-    res.json({ 
-        message: "Chris Dev Blog API - Frontend is deployed separately on Netlify",
-        api: "https://chris-dev-backend.onrender.com/api/v1",
-        frontend: "https://chrisdev-blog.netlify.app"
-    });
-});
+// Note: Removed catch-all route that was interfering with API calls
+// API endpoints should be handled by their respective routers only
 
 app.listen(PORT, ()=>{
     console.log(`🚀 Server listen at port ${PORT}`);
