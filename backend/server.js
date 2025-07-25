@@ -65,16 +65,19 @@ app.get("/", (req, res) => {
  app.use("/api/v1/blog", blogRoute)
  app.use("/api/v1/comment", commentRoute)
 
-// Only serve static files in development or when frontend is built
-if (process.env.NODE_ENV !== 'production') {
-    app.use(express.static(path.join(_dirname,"/frontend/dist")));
-    app.get("*", (_, res)=>{
-        res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"))
+// 404 handler for unmatched routes
+app.use('*', (req, res) => {
+    console.log(`❌ 404 - Route not found: ${req.method} ${req.originalUrl}`);
+    res.status(404).json({ 
+        success: false,
+        message: `Route ${req.method} ${req.originalUrl} not found`,
+        timestamp: new Date().toISOString()
     });
-} 
+});
 
-// Note: Removed catch-all route that was interfering with API calls
+// Note: Removed ALL catch-all routes that were interfering with API calls
 // API endpoints should be handled by their respective routers only
+// Frontend is deployed separately on Netlify/Vercel
 
 app.listen(PORT, ()=>{
     console.log(`🚀 Server listen at port ${PORT}`);
