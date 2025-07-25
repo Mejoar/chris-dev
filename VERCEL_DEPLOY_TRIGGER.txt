@@ -1,0 +1,12 @@
+EMERGENCY DEPLOYMENT TRIGGER
+============================
+Timestamp: 2025-07-25 16:47:04 UTC
+Reason: Force Vercel to redeploy with production API URLs
+Status: LOCALHOST ERRORS MUST BE FIXED
+
+This file exists solely to trigger a Vercel deployment.
+All frontend API calls MUST use: https://chris-dev-backend.onrender.com
+NO localhost:8000 calls should exist in production.
+
+If you still see localhost errors after this deployment,
+there is a serious configuration issue with Vercel.
